@@ -1,0 +1,50 @@
+{extend name="common/base" /}
+{block name="content"}
+<header class="mui-bar mui-bar-nav">
+	<h1 class="mui-title">会员登录</h1>
+</header>
+<div class="mui-content">
+	<div class="mui-input-group" style="margin-top: 130px;width: 80%;margin-left: 8%;">
+		<div class="mui-input-row">
+			 <input type="text" class="mui-input-clear" name="mobilephone" placeholder="请输入手机号">
+		</div>
+		<div  class="mui-input-row">
+			<input type="password" class="mui-input-password" name="password" placeholder="请输入密码">
+		</div>
+	</div>
+	<div style="text-align: center;margin-top: 100px;">
+		<button type="button" class="mui-btn mui-btn-primary" style="width: 80%;" id="loginBtn">登录</button>
+	</div>
+	<div style="width:80%;margin-left: auto;margin-right: auto;margin-top: 20px;">
+		<div class="left"><a href="{:url("user/register")}">立即注册</a></div>
+		<div class="right"><a href="{:url("user/forget")}">忘记密码</a></div>
+	</div>
+</div>
+{/block}
+{block name="script"}
+<script>
+	//登录
+	$("#loginBtn").click(function(){
+		var mobilephone = $("input[name='mobilephone']").val();
+		var password = $("input[name='password']").val();
+		$.ajax({
+			type:'POST',
+			url:'{:url("user/login")}',
+			data:{mobilephone:mobilephone,password:password},
+			dataType:'json',
+			success:function(result){
+				if(result.code == 1){
+					//登录成功后跳转
+					location.href = result.url;
+				}else{
+					//提示失败原因
+					mui.alert(result.msg);
+				}
+			},
+			error:function(xhr,type){
+				alert('login error');
+			}
+		});
+	});
+</script>
+{/block}

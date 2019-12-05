@@ -1,0 +1,64 @@
+<form autocomplete="off" class="layui-form layui-box modal-form-box" action="{:request()->url()}" data-auto="true" method="post">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">标题</label>
+        <div class="layui-input-block">
+            <input name="title" value='{$vo.title|default=""}' required="required" title="请输入标题" placeholder="请输入标题" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">所属图书</label>
+         <div class="layui-input-block">
+            <select name="book_id" lay-verify="required" required="required" >
+                <option value=""></option>
+                {foreach $books as $book}
+                <!--{if $book.id == $vo['book_id']}-->
+                <option value="{$book.id}" selected="selected">{$book.title}</option>
+                <!--{else}-->
+                <option value="{$book.id}">{$book.title}</option>
+                <!--{/if}-->
+                {/foreach}
+            </select>
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否免费</label>
+         <div class="layui-input-block">
+            <select name="is_free" lay-verify="required" required="required" >
+                <option value=""></option>
+                <!--{if $vo['is_free'] == 1}-->
+                <option value="1" selected="selected">是</option>
+                <option value="0">否</option>
+                <!--{else}-->
+                <option value="1">是</option>
+                <option value="0" selected="selected">否</option>
+                <!--{/if}-->
+            </select>
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">排序</label>
+        <div class="layui-input-block">
+            <input name="sort" value='{$vo.sort|default="50"}' required="required|number" title="请输入排序" placeholder="请输入排序" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">内容</label>
+        <div class="layui-input-block">
+            <textarea placeholder="请输入内容" title="请输入内容" required="required"  class="layui-textarea" name="content">{$vo.content|default=""}</textarea>
+        </div>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        {if isset($vo['id'])}<input type='hidden' value='{$vo.id}' name='id'>{/if}
+        <button class="layui-btn" type='submit'>保存数据</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close>取消编辑</button>
+    </div>
+    <script>window.form.render();</script>
+</form>

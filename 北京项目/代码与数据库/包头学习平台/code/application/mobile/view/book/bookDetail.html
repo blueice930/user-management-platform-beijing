@@ -1,0 +1,68 @@
+{extend name="common/base" /}
+{block name="content"}
+<header class="mui-bar mui-bar-nav">
+	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	<h1 class="mui-title">包头市中小学生竞赛平台</h1>
+</header>
+<div class="mui-content">
+	<div class="bookDetailHeader">
+		<div class="leftBox">
+			<img src="__STATIC__/mobile/img/book.jpg"/>
+		</div>
+		<div class="rightBox">
+			<p class="title">
+				《{$detail.title}》
+			</p>
+			<div>
+				<p class="left">作者 <font class="black">{$detail.author}</font></p>
+				<p class="right">讲述人 <font class="black">{$detail.teller}</font></p>
+				<div class="clear"></div>
+			</div>
+			<p>
+				{$detail.desc_short}
+			</p>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div style="padding: 10px 10px;">
+		<div id="segmentedControl" class="mui-segmented-control">
+			<a class="mui-control-item mui-active" href="#item1">书籍介绍</a>
+			<a class="mui-control-item" href="#item2">书籍目录</a>
+		</div>
+	</div>
+	<div>
+		<div id="item1" class="mui-control-content mui-active">
+			<div style="padding: 15px;" class="black">
+				<p>内容简介</p>
+				<p>
+					{$detail.desc_long}
+				</p>
+			</div>
+		</div>
+		<div id="item2" class="mui-control-content">
+			<ul class="mui-table-view sectionList">
+			{volist name="sections" id="section"}
+				<li class="mui-table-view-cell">
+					<a href="{:url('book/sectionDetail',['id'=>$section['id']])}">
+						<div class="left" style="max-width:95%;white-space:normal;">
+							<i class="icon_play"></i>{$section.title}
+						</div>
+						<div class="right">
+							{if condition="!$section.is_free"}
+							<i class="icon_lock"></i>
+							{/if}
+						</div>
+						<div class="clear"></div>
+					</a>
+				</li>
+			{/volist}
+			</ul>
+		</div>
+	</div>
+</div>
+{/block}
+{block name="script"}
+<script>
+	mui.init();
+</script>
+{/block}

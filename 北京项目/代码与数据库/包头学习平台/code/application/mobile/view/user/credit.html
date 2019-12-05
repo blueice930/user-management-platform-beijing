@@ -1,0 +1,31 @@
+{extend name="common/base" /}
+{block name="content"}
+<header class="mui-bar mui-bar-nav">
+	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	<h1 class="mui-title">我的积分</h1>
+	<a class="topmenu mui-action-menu mui-icon mui-icon-bars mui-pull-right" href="#topPopover"></a>
+</header>
+<div class="mui-content" style="margin-left: 20px;margin-top: 30px;">
+	<p>当前积分：<font style="color: red;">{$user.credit}</font></p>
+	<div>
+		<p>
+			积分获取方式：
+		</p>
+		<div style="text-align: center;">
+			<!-- <a href="">
+				<button type="button" class="mui-btn mui-btn-primary mui-btn-outlined" style="width: 60%;margin-top: 20px;">已支付列表</button>
+			</a> -->
+			<a href="{:url('user/punch')}">
+				<button type="button" class="mui-btn mui-btn-primary mui-btn-outlined" style="width: 60%;margin-top: 20px;">签到领取积分</button>
+			</a>
+			<a href="{:url('user/invite')}">
+				<button type="button" class="mui-btn mui-btn-primary mui-btn-outlined" style="width: 60%;margin-top: 20px;">邀请赚积分</button>
+			</a>
+		</div>
+	</div>
+</div>
+{/block}
+{block name="script"}
+<script>
+</script>
+{/block}

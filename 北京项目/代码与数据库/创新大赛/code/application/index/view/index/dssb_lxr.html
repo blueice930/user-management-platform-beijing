@@ -1,0 +1,112 @@
+{extend name='index@public/main'}
+
+{block name="content"}
+<div class="content" style="background: #0089f4;text-align: center;padding-top: 120px;padding-bottom:100px;color: #fff;">
+        <div class="warp form" style="border-radius: 20px;background: #fff;padding-bottom: 50px;">
+            <p style="color: #0288f4;font-size: 30px;padding-top: 50px;">联系人资格申报</p>
+            <form class="layui-form" id="form" action="">
+                <ul>
+                        <li>
+                                姓名 |
+                                <input name="name" lay-verify="required" placeholder="请输入姓名"/>
+                        </li>
+                        <li>
+                                密码 |
+                                <input type="password" name="password" lay-verify="required" placeholder="请输入密码"/>
+                        </li>
+                        <li>
+                                单位 |
+                                <input name="org" lay-verify="required" placeholder="请输入单位"/>
+                        </li>
+                        <li>
+                                联系地址 |
+                                <input name="address" lay-verify="required" placeholder="请输入联系地址"/>
+                        </li>
+                        <li>
+                                联系电话 |
+                                <input name="mobile" lay-verify="required|phone" placeholder="请输入手机号码"/>
+                        </li>
+                        <li>
+                                联系QQ |
+                                <input name="qq" lay-verify="required" placeholder="请输入QQ号码"/>
+                        </li>
+                </ul>
+                <div style="color: #000;margin:20px;">
+                        <p>
+                            申报十项以上作品可以开具发票，是否需要：
+                            是<input type="radio" name="needfp" value="1" lay-filter="needfp" lay-verify="required"  /> &nbsp;&nbsp;
+                            否<input type="radio" name="needfp" value="0" lay-filter="needfp" lay-verify="required"  />
+                        </p>
+                </div>
+                <ul id="fpBox" style="display: none;">
+                        <li>
+                                户头 |
+                                <input name="hutou" placeholder="请输入户头"/>
+                        </li>
+                        <li>
+                                税号 |
+                                <input name="shuihao" placeholder="请输入税号"/>
+                        </li>
+                </ul>
+                
+                <div style="margin-top: 20px;">
+                        <button id="submitBtn" class="layui-btn" lay-submit>完成申报</button>
+                </div>
+            </form>
+        </div>
+    <div style="margin-top:20px; ">
+                <p>
+                注意：一定认真核实信息，联系方式或地址变化要及时更新，以免影响证书邮寄
+                <br>
+                联系人资格需要审查，审查合格后总管理员写入申报代码并显示在联系人登陆后的页面上端
+                <br>
+                联系人身份通过后可以凭姓名和密码登录修改信息，查看申报代码。
+                </p>
+        </div>
+</div>
+{/block}
+
+{block name="script"}
+<script>
+    $("input[name=needfp]").click(function(){
+        
+    });
+    
+     $("#form").submit(function(){
+        $.ajax({
+            type : "POST",
+            dataType: "json",
+            url : "",
+            data : $("#form").serializeArray(),
+            success : function(result) {
+                layer.alert('提交成功,等待审核', {icon: 1});
+                $("#form")[0].reset();
+            },
+            error : function(e){
+                layer.alert('提交失败,请刷新页面重试', {icon: 2});
+            }
+        });
+        return false;
+    });
+    
+
+    layui.use(['form', 'layedit', 'laydate'], function(){
+      var form = layui.form
+      ,layer = layui.layer
+      ,layedit = layui.layedit
+      ,laydate = layui.laydate;
+      form.render();
+      laydate.render({
+        elem: '#birthday'
+      });
+      form.on('radio(needfp)', function(data){
+        var needfp = data.value;
+        if(needfp == "1"){
+            $("#fpBox").show();
+        }else{
+            $("#fpBox").hide();
+        }
+      }); 
+    });
+</script>
+{/block}

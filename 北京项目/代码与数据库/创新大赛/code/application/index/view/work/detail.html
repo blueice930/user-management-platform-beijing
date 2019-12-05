@@ -1,0 +1,26 @@
+{extend name='index@public/main'}
+
+{block name="content"}
+<div class="content">
+    <div>
+            <img src="__STATIC__/index/img/banner2.jpg" style="width: 100%;" />
+    </div>
+    <div class="warp">
+        <center class="work_title" style="font-size:25px;margin:20px 0;">{$detail.title}</center>
+        <div>
+            <div style="float: left;width: 20%;background: #0089F4;color: #fff;padding: 20px;line-height: 25px;">
+                <p>作者:{$detail.author}</p>
+                <p>奖项:{$detail.prize}</p>
+                <p>学校/机构:{$detail.org}</p>
+                <p>指导老师:{$detail.teacher}</p>
+                <p>设计理念:{$detail.desc}</p>
+            </div>
+            <div class="work_content" style="margin-left:20px;float: left;">
+                {$detail.content|raw}
+            </div>
+            <div class="clear" style="margin-bottom: 20px;"></div>
+        </div>
+        
+    </div>
+</div>
+{/block}

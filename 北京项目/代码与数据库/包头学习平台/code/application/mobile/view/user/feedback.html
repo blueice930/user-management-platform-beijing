@@ -1,0 +1,47 @@
+{extend name="common/base" /}
+{block name="content"}
+<header class="mui-bar mui-bar-nav">
+	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	<h1 class="mui-title">意见反馈</h1>
+	<a class="topmenu mui-action-menu mui-icon mui-icon-bars mui-pull-right" href="#topPopover"></a>
+</header>
+<div class="mui-content">
+	<div class="" style="margin-top: 20px;width: 90%;margin-left: 5%;">
+		<div class="mui-input-row">
+			<textarea style="height: 200px;" id="content"></textarea>
+		</div>
+	</div>
+	<div style="text-align: right;margin-top:10px;margin-right: 20px;">
+		<button type="button" class="mui-btn mui-btn-primary" style="width: 30%;" id="submit">发送反馈</button>
+	</div>
+</div>
+{/block}
+{block name="script"}
+<script>
+	$("#submit").click(function(){
+		var content = $("#content").val();
+		if(content == ""){
+			mui.alert("内容不能为空");
+	        return false; 
+		}
+		$.ajax({
+			type:'POST',
+			url:'{:url("user/feedback")}',
+			data:{content:content},
+			dataType:'json',
+			success:function(result){
+				if(result.code == 1){
+					$("#content").val("");
+					mui.alert(result.msg);
+				}else{
+					//提示失败原因
+					mui.alert(result.msg);
+				}
+			},
+			error:function(xhr,type){
+				alert('error');
+			}
+		});
+	});
+</script>
+{/block}

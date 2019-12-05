@@ -1,0 +1,203 @@
+{extend name="common/base" /}
+{block name="content"}
+<header class="mui-bar mui-bar-nav">
+	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	<h1 class="mui-title">个人信息</h1>
+	<a class="topmenu mui-action-menu mui-icon mui-icon-bars mui-pull-right" href="#topPopover"></a>
+</header>
+<div class="mui-content">
+    <div style="text-align: center;background: #fdeb9a;height: 35px;line-height: 35px;">
+            <p style="color: #7c5500;">请完善个人信息，以便向您提供更加优质的服务！</p>
+    </div>
+    <ul class="mui-table-view user_home_menu">
+        <li class="mui-table-view-cell">
+            <a class="mui-navigate-right" style="line-height: 35px;">
+                头像
+                <span class="mui-pull-right" id="imgBox" style="width: 35px;height: 35px;margin-right:30px;overflow: hidden;border-radius: 35px;">
+                    <img src="{$user.img}" style="width: 100%;height: 100%;"/>
+                </span>
+            </a>
+        </li>
+        <li class="mui-table-view-cell">
+            <a class="mui-navigate-right">
+                昵称
+                <span class="mui-pull-right" id="nicknameBox" style="margin-right: 30px;">
+                    {$user.nickname}
+                </span>
+            </a>
+        </li>
+        <li class="mui-table-view-cell">
+            <a class="mui-navigate-right">
+                性别
+                <span class="mui-pull-right" id="sexBox" style="margin-right: 30px;">
+                    {$user.sex}
+                </span>
+            </a>
+        </li>
+        <li class="mui-table-view-cell">
+            <a class="mui-navigate-right">
+                生日
+                <span class="mui-pull-right" id="birthdayBox" style="margin-right: 30px;">
+                    {$user.birthday}
+                </span>
+            </a>
+        </li>
+        <li class="mui-table-view-cell">
+            <a class="mui-navigate-right">
+                真实姓名
+                <span class="mui-pull-right" id="realnameBox" style="margin-right: 30px;">
+                    {$user.realname}
+                </span>
+            </a>
+        </li>
+        <li class="mui-table-view-cell">
+            <a>
+                联系电话
+                <span class="mui-pull-right" style="margin-right: 30px;">
+                    {$user.mobilephone}
+                </span>
+            </a>
+        </li>
+        <li class="mui-table-view-cell">
+            <a class="mui-navigate-right">
+                学校
+                <span class="mui-pull-right" id="schoolBox" style="margin-right: 30px;">
+                    {$user.school}
+                </span>
+            </a>
+        </li>
+        <li class="mui-table-view-cell">
+            <a>
+                推荐人
+                <span class="mui-pull-right" style="margin-right: 30px;">
+<!--                    {$user.pid}-->
+                </span>
+            </a>
+        </li>
+        <li class="mui-table-view-cell">
+            <a class="mui-navigate-right">
+                邮寄地址
+                <span class="mui-pull-right" id="addressBox" style="margin-right: 30px;text-overflow: ellipsis;overflow:hidden;width: 65%;">
+                    {$user.address}
+                </span>
+            </a>
+        </li>
+    </ul>
+<!--    <div style="text-align: center;margin-top: 50px;">
+        <button type="button" class="mui-btn mui-btn-primary" style="width: 80%;">确认</button>
+    </div>-->
+</div>
+{/block}
+{block name="script"}
+<script>
+    //头像
+    $("#imgBox").click(function(){
+        //选择图片
+        wx.chooseImage({
+            count: 1,
+            sizeType: ['compressed'],
+            success: function (res) {
+                var localIds = res.localIds;// 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                //上传到微信服务器
+                wx.uploadImage({
+                    localId: localIds[0], // 需要上传的图片的本地ID，由chooseImage接口获得
+                    success: function (res) {
+                        var media_id = res.serverId; // 返回图片的服务器端ID
+                        //上传到本系统
+                        $.ajax({
+                            type:'POST',
+                            url:'{:url("common/wxUploadImage")}',
+                            dataType:'json',
+                            data:{media_id:media_id,type:'user_img'},
+                            success:function(result){
+                                $("#imgBox img").attr('src',result.data.url);
+                            },
+                            error:function(xhr,type){
+                                mui.alert('操作失败，请稍后重试');
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+    
+    //昵称
+    $("#nicknameBox").parent().click(function(){
+        editUserInfo("昵称","nickname");
+    });
+    
+    //真实姓名
+    $("#realnameBox").parent().click(function(){
+        editUserInfo("真实姓名","realname");
+    });
+    
+    //学校
+    $("#schoolBox").parent().click(function(){
+        editUserInfo("学校","school");
+    });
+    
+    //邮寄地址
+    $("#addressBox").parent().click(function(){
+        editUserInfo("邮寄地址","address");
+    });
+    
+    //性别
+    $("#sexBox").parent().click(function(){
+        var picker = new mui.PopPicker();
+        picker.setData([{value:'男',text:'男'},{value:'女',text:'女'}]);
+        picker.show(function (selectItems) {
+            $.ajax({
+                type:'POST',
+                url:'{:url("user/editUserInfo")}',
+                dataType:'json',
+                data:{sex:selectItems[0].value},
+                success:function(result){
+                    $("#sexBox").text(selectItems[0].value);
+                }
+            });
+         });
+    });
+    
+    //生日
+    $("#birthdayBox").parent().click(function(){
+        var dtpicker = new mui.DtPicker({ 
+            type: "date",
+            beginDate: new Date(1950, 01, 01)
+        })
+        dtpicker.show(function(e) { 
+            $.ajax({
+                type:'POST',
+                url:'{:url("user/editUserInfo")}',
+                dataType:'json',
+                data:{birthday:e.text},
+                success:function(result){
+                    $("#birthdayBox").text(e.text);
+                }
+            });
+        });
+    });
+    
+    function editUserInfo(title, key){
+        mui.prompt("","",title,['确定','取消'],function(e) {
+            //确定
+            if (e.index == 0) {
+                var data = {};
+                data[key] = e.value;
+                $.ajax({
+                    type:'POST',
+                    url:'{:url("user/editUserInfo")}',
+                    dataType:'json',
+                    data:data,
+                    success:function(result){
+                        if(result.code == 1){
+                            $("#"+key+"Box").text(e.value);
+                        }
+                    }
+                });
+            }
+        });
+        document.querySelector('.mui-popup-input input').value = $("#"+key+"Box").text().trim(); 
+    }
+</script>
+{/block}

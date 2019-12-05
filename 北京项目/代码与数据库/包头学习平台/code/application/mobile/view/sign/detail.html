@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>包头市无线电测向体验活动</title>
+		<link href="__STATIC__/mobile/css/mui.min.css" rel="stylesheet" />
+		<link href="__STATIC__/mobile/css/mui.picker.min.css" rel="stylesheet"/>
+		<style>
+			body,.mui-content{
+				background-color: #fff;
+			}
+			.sign{
+				padding: 10px;
+			}
+			.sign p{
+				color: #000;
+				line-height: 25px;
+				font-size: 17px;
+			}
+			ul,li{
+				list-style: none;
+				padding: 0px;
+			}
+			.left{
+				float: left;
+			}
+			.clear{
+				clear: both;
+			}
+			.mui-input-row.left{
+				clear: none;
+				overflow: auto;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="mui-content sign">
+			<div style="text-align: center;">
+				<img src="__STATIC__/mobile/img/icon_wxpay.png" />
+			</div>
+			<div style="text-align: center;">
+				<p>支付成功</p>
+			</div>
+			<p style="margin-top: 30px;">
+				你已成功报名{$data['join_time']}无线电测向体验活动并支付成功
+			</p>
+			<p>
+				你的支付编码是：{$data['order_code']}
+			</p>
+			<p style="color: red;">
+				请截图并留存本页作为支付凭证
+			</p>
+			<p style="margin-top: 20px;text-align: center;">
+				<a style="text-decoration:underline;" href="{:url('sign/index')}">如需添加报名学生,点击这里继续报名</a>
+			</p>
+			<p style="margin-top: 30px;text-align: center;">
+				添加小助手，进入活动群
+			</p>
+			<div style="text-align: center;">
+				<img src="__STATIC__/mobile/img/qr3.jpg"/>
+			</div>
+		</div>
+		<script src="__STATIC__/mobile/js/mui.min.js"></script>
+		<script src="//res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+		<script>
+			//注册微信JS-SDK
+			wx.config({
+			    debug: false,
+			    appId: '{$signPackage.appId}',
+			    timestamp: '{$signPackage.timestamp}',
+			    nonceStr: '{$signPackage.nonceStr}',
+			    signature: '{$signPackage.signature}',
+			    jsApiList: [
+					'checkJsApi',
+					'updateAppMessageShareData',
+					'updateTimelineShareData'
+	         	]
+			});
+			
+			//分享信息
+	    	var shareData = {
+	    		title:"无线电测向体验在线报名",	
+	    		desc:"包头市无线电测向体验活动",	
+	    		link:"http://bts.hengha.org/mobile/sign/index.html",
+	    		imgUrl:"http://{$Think.server.http_host}__STATIC__/mobile/img/share.jpg"
+	    	};
+			
+			wx.ready(function () {  
+				wx.updateAppMessageShareData({ 
+			        title: shareData.title, 
+			        desc: shareData.desc,
+			        link: shareData.link,
+			        imgUrl: shareData.imgUrl,
+			        success: function () {
+			        }
+				});
+				wx.updateTimelineShareData({ 
+			        title: shareData.title, 
+			        link: shareData.link,
+			        imgUrl: shareData.imgUrl,
+			        success: function () {
+			        }
+				});
+			});
+		</script>
+	</body>
+
+</html>

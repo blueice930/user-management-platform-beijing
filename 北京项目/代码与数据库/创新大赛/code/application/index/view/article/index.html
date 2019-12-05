@@ -1,0 +1,21 @@
+{extend name='index@public/main'}
+
+{block name="content"}
+<div class="content">
+    <div>
+        <img src="__STATIC__/index/img/banner1.jpg" style="width: 100%;" />
+    </div>
+    <div class="warp">
+        <p style="font-size:25px;margin:20px 0;">赛事公告</p>
+        <ul class="article_list">
+            {volist name="list" id="vo"}
+            <li style="margin:20px 0;">
+                <p style="float:left;"><a href="{:url('detail',['id'=>$vo.id])}">{$vo.title}</a></p>
+                <p style="float:right">【{$vo.create_time}】</p>
+                <p style="clear:both;"></p>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+</div>
+{/block}

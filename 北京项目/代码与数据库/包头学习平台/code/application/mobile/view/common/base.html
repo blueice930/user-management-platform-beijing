@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>{block name="title"}包头市中小学生竞赛平台{/block}</title>
+		<link href="__STATIC__/mobile/css/mui.min.css" rel="stylesheet" />
+                <link href="__STATIC__/mobile/css/mui.picker.min.css" rel="stylesheet" />
+                <link href="__STATIC__/mobile/css/mui.poppicker.css" rel="stylesheet" />
+		<link href="__STATIC__/mobile/css/style.css?v=<?php echo time();?>" rel="stylesheet" />
+	</head>
+	{block name="body"}
+	<body>
+		{block name="content"}
+		{/block}
+		{block name="popover"}
+			<!--右上角弹出菜单-->
+			<div id="topPopover" class="mui-popover">
+				<div class="mui-popover-arrow"></div>
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<a href="{:url("index/index")}">首页</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a href="{:url("sign/index")}">活动</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a href="{:url("user/index")}">会员</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		{/block}
+		<script src="__STATIC__/mobile/js/mui.min.js"></script>
+		<script src="__STATIC__/mobile/js/mui.lazyload.js"></script>
+		<script src="__STATIC__/mobile/js/mui.lazyload.img.js"></script>
+                <script src="__STATIC__/mobile/js/zepto.min.js"></script>
+                <script src="__STATIC__/mobile/js/mui.picker.min.js"></script>
+		<script src="__STATIC__/mobile/js/mui.poppicker.js"></script>
+                <script src="//res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+                <script>
+                    //注册微信JS-SDK
+                    wx.config({
+                        debug: false,
+                        appId: '{$signPackage.appId}',
+                        timestamp: '{$signPackage.timestamp}',
+                        nonceStr: '{$signPackage.nonceStr}',
+                        signature: '{$signPackage.signature}',
+                        jsApiList: [
+                            'checkJsApi',
+                            'updateAppMessageShareData',
+                            'updateTimelineShareData',
+                            'onMenuShareTimeline',
+                            'onMenuShareAppMessage',
+                            'onMenuShareQQ',
+                            'onMenuShareWeibo',
+                            'hideMenuItems',
+                            'showMenuItems',
+                            'hideAllNonBaseMenuItem',
+                            'showAllNonBaseMenuItem',
+                            'translateVoice',
+                            'startRecord',
+                            'stopRecord',
+                            'onRecordEnd',
+                            'playVoice',
+                            'pauseVoice',
+                            'stopVoice',
+                            'uploadVoice',
+                            'downloadVoice',
+                            'chooseImage',
+                            'previewImage',
+                            'uploadImage',
+                            'downloadImage',
+                            'getNetworkType', 
+                            'openLocation',
+                            'getLocation',
+                            'hideOptionMenu',
+                            'showOptionMenu',
+                            'closeWindow',
+                            'scanQRCode',
+                            'chooseWXPay',
+                            'openProductSpecificView',
+                            'addCard',
+                            'chooseCard',
+                            'openCard',
+                            'openAddress'
+                        ]
+                    });
+			
+                    //分享信息
+                    var shareData = {
+                            title:"包头市中小学生竞赛平台",	
+                            desc:"加入学习的大家庭",	
+                            link:"{:request()->url(true)}",
+                            imgUrl:"http://{$Think.server.http_host}__STATIC__/mobile/img/share.jpg"
+                    };
+                    wx.ready(function () {  
+                        wx.updateAppMessageShareData({ 
+                            title: shareData.title, 
+                            desc: shareData.desc,
+                            link: shareData.link,
+                            imgUrl: shareData.imgUrl,
+                            success: function () {
+                            }
+                        });
+                        wx.updateTimelineShareData({ 
+                            title: shareData.title, 
+                            link: shareData.link,
+                            imgUrl: shareData.imgUrl,
+                            success: function () {
+                            }
+                        });
+                    });
+                </script>
+		{block name="script"}
+		<script>
+			
+		</script>
+		{/block}
+    </body>
+    {/block}
+</html>

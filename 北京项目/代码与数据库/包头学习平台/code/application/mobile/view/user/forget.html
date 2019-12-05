@@ -1,0 +1,109 @@
+{extend name="common/base" /}
+{block name="content"}
+<header class="mui-bar mui-bar-nav">
+	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	<h1 class="mui-title">找回密码</h1>
+</header>
+<div class="mui-content">
+	<div class="mui-input-group" style="margin-top: 100px;width: 80%;margin-left: 8%;">
+		<div class="mui-input-row">
+			 <input type="text" class="mui-input-clear" name="mobilephone" placeholder="请输入手机号">
+		</div>
+		<div class="mui-input-row">
+			 <input type="text" class="mui-input-clear" name="code" placeholder="请输入验证码" style="width: 50%;">
+			 <button type="button" class="mui-btn mui-btn-primary" style="width: 100px;margin-top: 1px;" id="sendSms">获取验证码</button>
+		</div>
+		<div  class="mui-input-row">
+			<input type="password" class="mui-input-password" name="password" placeholder="设置新密码">
+		</div>
+		<div  class="mui-input-row">
+			<input type="password" class="mui-input-password" name="repassword" placeholder="确认新密码">
+		</div>
+	</div>
+	<div style="text-align: center;margin-top: 100px;">
+		<button type="button" class="mui-btn mui-btn-primary" style="width: 80%;" id="submit">确定</button>
+	</div>
+</div>
+{/block}
+{block name="script"}
+<script>
+    var lock = false;
+	//发送验证码
+	$("#sendSms").click(function(){
+		var mobilephone = $("input[name='mobilephone']").val();
+		if(mobilephone == ""){
+			mui.alert("手机号码不能为空");
+	        return false; 
+		}
+		if(lock){
+			return false;
+		}else{
+			lock = true;
+		}
+		$.ajax({
+			type:'POST',
+			url:'{:url("user/sendSms")}',
+			data:{mobilephone:mobilephone,type:"forget"},
+			dataType:'json',
+			success:function(result){
+				//lock = false;
+				if(result.code == 1){
+					$("#sendSms").text("发送成功");
+				}else{
+					//提示失败原因
+					mui.alert(result.msg);
+				}
+			},
+			error:function(xhr,type){
+				alert('error');
+				lock = false;
+			}
+		});
+	});
+        
+	//忘记密码
+	$("#submit").click(function(){
+		var mobilephone = $("input[name='mobilephone']").val();
+		var code = $("input[name='code']").val();
+		var password = $("input[name='password']").val();
+		var repassword = $("input[name='repassword']").val();
+		if(mobilephone == ""){
+			mui.alert("手机号码不能为空");
+	        return false; 
+		}
+		if(code == ""){
+			mui.alert("验证码不能为空");
+	        return false; 
+		}
+		if(password == ""){
+			mui.alert("密码不能为空");
+	        return false; 
+		}
+		if(!(/^1\d{10}$/.test(mobilephone))){ 
+			mui.alert("请输入正确的手机号码");
+	        return false; 
+		}
+		if(password != repassword){
+			mui.alert("两次输入密码不一致");
+		}
+		$.ajax({
+			type:'POST',
+			url:'{:url("user/forget")}',
+			data:{mobilephone:mobilephone,code:code,password:password},
+			dataType:'json',
+			success:function(result){
+				if(result.code == 1){
+					//成功后跳转
+					location.href = result.url;
+				}else{
+					//提示失败原因
+					mui.alert(result.msg);
+				}
+			},
+			error:function(xhr,type){
+				alert('login error');
+			}
+		});
+	});
+</script>
+{/block}

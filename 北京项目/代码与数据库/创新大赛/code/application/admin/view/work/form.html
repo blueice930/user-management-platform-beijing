@@ -1,0 +1,78 @@
+<form autocomplete="off" class="layui-form layui-box modal-form-box" action="{:request()->url()}" data-auto="true" method="post">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">标题</label>
+        <div class="layui-input-block">
+            <input name="title" value='{$vo.title|default=""}' required="required" title="请输入" placeholder="请输入" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">图片</label>
+        <div class="layui-input-block">
+            <img src="{$vo.img|default='__STATIC__/plugs/uploader/theme/image.png'}" id="imgBox" style="width: 100px;float: left;" data-file='one' data-field='img' data-type='jpeg,jpg,png,gif'/>
+            <input style="display: none;" onchange="imgChange()" name="img" value='{$vo.img|default=""}' required="required" title="请上传图片" placeholder="请上传图片" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">作者</label>
+        <div class="layui-input-block">
+            <input name="author" value='{$vo.author|default=""}' required="required" title="请输入" placeholder="请输入" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">奖项</label>
+        <div class="layui-input-block">
+            <input name="prize" value='{$vo.prize|default=""}' required="required" title="请输入" placeholder="请输入" class="layui-input">
+        </div>
+    </div>
+    
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">学校/机构</label>
+        <div class="layui-input-block">
+            <input name="org" value='{$vo.org|default=""}' required="required" title="请输入" placeholder="请输入" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">指导老师</label>
+        <div class="layui-input-block">
+            <input name="teacher" value='{$vo.teacher|default=""}' required="required" title="请输入" placeholder="请输入" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">设计理念</label>
+        <div class="layui-input-block">
+            <input name="desc" value='{$vo.desc|default=""}' required="required" title="请输入" placeholder="请输入" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">内容</label>
+        <div class="layui-input-block">
+            <textarea placeholder="请输入内容" title="请输入内容" required="required"  class="layui-textarea" name="content">{$vo.content|default=""}</textarea>
+        </div>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        {if isset($vo['id'])}<input type='hidden' value='{$vo.id}' name='id'>{/if}
+        <button class="layui-btn" type='submit'>保存数据</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close>取消编辑</button>
+    </div>
+    <script>
+        window.form.render();
+        require(['angular', 'ckeditor'], function () {
+            var editor = window.createEditor('[name="content"]');
+        });
+        
+        function imgChange(){
+            $("#imgBox").attr("src",$('[name="img"]').val());
+        }
+    </script>
+</form>

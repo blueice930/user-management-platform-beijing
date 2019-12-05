@@ -1,0 +1,24 @@
+{extend name='index@public/main'}
+
+{block name="content"}
+<div class="content" style="background: #0089f4;text-align: center;padding-top: 120px;padding-bottom:100px;color: #fff;">
+        <div style="text-align: center;">
+                <img src="__STATIC__/index/img/img1.png" style="max-width: 100%;"/>
+        </div>
+        <div>
+                <ul class="warp">
+                        <li style="float: left;width: 32%;">
+                                <a href="{:url('index/dssb_lxr')}"><img style="border-radius: 10px;width: 100%;" src="__STATIC__/index/img/btn_lxr.png"/></a>
+                        </li>
+                        <li style="float: left;margin: 0 10px;width: 32%;">
+                                <a href="{:url('index/dssb_pw')}"><img style="border-radius: 10px;width: 100%;" src="__STATIC__/index/img/btn_pw.png"/></a>
+                        </li>
+                        <li style="float: left;width: 32%;">
+                                <a href="{:url('index/dssb_xs')}"><img style="border-radius: 10px;width: 100%;" src="__STATIC__/index/img/btn_xs.png"/></a>
+                        </li>
+                </ul>
+        </div>
+        <div class="clear">
+        </div>
+</div>
+{/block}

@@ -1,0 +1,28 @@
+{extend name='index@public/main'}
+
+{block name="content"}
+<div class="content">
+    <div>
+            <img src="__STATIC__/index/img/banner2.jpg" style="width: 100%;" />
+    </div>
+    <div class="warp">
+        <center>
+            <img src="__STATIC__/index/img/zpzs_title.png" />
+        </center>
+        <ul>
+            {volist name="list" id="vo"}
+            <li style="margin:10px;width: 30%;">
+                <a href="{:url('detail',['id'=>$vo.id])}">
+                    <div><img style="width:100%;" src="{$vo.img}" alt /></div>
+                    <p>作者:{$vo.author}</p>
+                    <p>奖项:{$vo.prize}</p>
+                    <p>学校/机构:{$vo.org}</p>
+                    <p>指导老师:{$vo.teacher}</p>
+                    <p>设计理念:{$vo.desc}</p>
+                </a>
+            </li>
+            {/volist}
+        </ul>    
+    </div>
+</div>
+{/block}

@@ -1,0 +1,61 @@
+{extend name='index@public/main'}
+
+{block name="content"}
+<div class="content" style="background: #0089f4;text-align: center;padding-top: 120px;padding-bottom:100px;color: #fff;">
+        <div style="text-align: center;">
+                <img src="__STATIC__/index/img/img1.png" style="max-width: 100%;"/>
+        </div>
+        <div style="margin-top: 30px;">
+            <ul class="warp">
+                <li style="float: left;width: 32%;border-radius: 10px;background: #00c459;">
+                    <div></div>
+                    <p style="margin-top: 100px;"><b>联系人资格申报</b></p>
+                    <div style="width:50%;margin-left: auto;margin-right: auto;">
+                        <a href="{:url('liaison/register')}">
+                            <p style="color:#fff;margin-top: 60px;background: #0fa853;padding: 10px 10px;border-radius: 5px;">申请认证</p>
+                        </a>
+                    </div>
+                    <div style="width:50%;margin-left: auto;margin-right: auto;">
+                        <a href="{:url('liaison/login')}">
+                            <p style="color:#fff;margin-top: 60px;background: #0fa853;padding: 10px 10px;border-radius: 5px;">已认证登录</p>
+                        </a>
+                    </div>
+                    <div style="height: 80px;"></div>
+                </li>
+                <li style="float: left;margin: 0 10px;width: 32%;border-radius: 10px;background: #e6f3fe;">
+                    <div></div>
+                    <p style="margin-top: 100px;color: #000;"><b>评委申请页面</b></p>
+                    <div style="width:50%;margin-left: auto;margin-right: auto;">
+                        <a href="{:url('judge/register')}">
+                            <p style="color:#fff;margin-top: 60px;background: #2d9ef5;padding: 10px 10px;border-radius: 5px;">申请认证</p>
+                        </a>
+                    </div>
+                    <div style="width:50%;margin-left: auto;margin-right: auto;">
+                        <a href="{:url('judge/login')}">
+                            <p style="color:#fff;margin-top: 60px;background: #2d9ef5;padding: 10px 10px;border-radius: 5px;">已认证登录</p>
+                        </a>
+                    </div>
+                    <div style="height: 80px;"></div>
+                </li>
+                <li style="float: left;width: 32%;border-radius: 10px;background: #fe9e1e;">
+                    <div></div>
+                    <p style="margin-top: 100px;"><b>学生申报方式</b></p>
+                    <div style="width:50%;margin-left: auto;margin-right: auto;">
+                        <a href="{:url('student/register')}">
+                            <p style="color:#fff;margin-top: 60px;background: #f4ce06;padding: 10px 10px;border-radius: 5px;">注册申请</p>
+                        </a>
+                    </div>
+                    <div style="width:50%;margin-left: auto;margin-right: auto;">
+                        <a href="{:url('student/login')}">
+                            <p style="color:#fff;margin-top: 60px;background: #f4ce06;padding: 10px 10px;border-radius: 5px;">已注册登录</p>
+                        </a>
+                    </div>
+                    <div style="height: 80px;"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="clear">
+        </div>
+</div>
+<div style="height: 1px;"></div>
+{/block}

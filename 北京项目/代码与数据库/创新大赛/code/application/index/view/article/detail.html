@@ -1,0 +1,13 @@
+{extend name='index@public/main'}
+
+{block name="content"}
+<div class="content">
+    <div>
+        <img src="__STATIC__/index/img/banner1.jpg" style="width: 100%;" />
+    </div>
+    <div class="warp">
+        <center class="article_title" style="font-size:25px;margin:20px 0;">{$detail.title}</center>
+        <div class="article_content" style="margin:20px 0;">{$detail.content|raw}</div>
+    </div>
+</div>
+{/block}

@@ -1,0 +1,79 @@
+{extend name='index@public/main'}
+
+{block name="content"}
+<div class="content" style="background: #0089f4;text-align: center;padding-top: 120px;padding-bottom:100px;color: #fff;">
+        <div class="warp form" style="border-radius: 20px;background: #fff;padding-bottom: 50px;">
+            <p style="color: #0288f4;font-size: 30px;padding-top: 50px;">评委申请页面</p>
+            <form class="layui-form" id="form" action="">
+                <ul>
+                        <li>
+                                姓名 |
+                                <input type="text" name="name" lay-verify="required" placeholder="请输入姓名"/>
+                        </li>
+                        <li>
+                                密码 |
+                                <input type="password" name="password" lay-verify="required" placeholder="请输入密码"/>
+                        </li>
+                        <li>
+                                性别 |
+                                <input type="radio" name="sex" value="man" lay-verify="required" />男
+                                <input type="radio" name="sex" value="woman" lay-verify="required" />女
+                        </li>
+                        <li>
+                                年龄 |
+                                <input type="number" name="age" lay-verify="required|number"  placeholder="请输入年龄"/>
+                        </li>
+                        <li>
+                                工作单位 |
+                                <input type="text" name="org" lay-verify="required" placeholder="请输入单位"/>
+                        </li>
+                        <li>
+                                联系电话 |
+                                <input type="text" name="mobile" lay-verify="required|phone" placeholder="请输入手机号码"/>
+                        </li>
+                        <li>
+                                联系地址 |
+                                <input type="text" name="address" lay-verify="required" placeholder="请输入联系地址"/>
+                        </li>
+                        
+                </ul>            
+                <div style="margin-top: 20px;">
+                        <button id="submitBtn" class="layui-btn" lay-submit>完成申报</button>
+                </div>
+            </form>
+        </div>
+</div>
+{/block}
+
+{block name="script"}
+<script>
+    $("#form").submit(function(){
+        $.ajax({
+            type : "POST",
+            dataType: "json",
+            url : "",
+            data : $("#form").serializeArray(),
+            success : function(result) {
+                layer.alert('提交成功,等待审核', {icon: 1});
+                $("#form")[0].reset();
+            },
+            error : function(e){
+                layer.alert('提交失败,请刷新页面重试', {icon: 2});
+            }
+        });
+        return false;
+    });
+    
+
+    layui.use(['form', 'layedit', 'laydate'], function(){
+      var form = layui.form
+      ,layer = layui.layer
+      ,layedit = layui.layedit
+      ,laydate = layui.laydate;
+      form.render();
+      laydate.render({
+        elem: '#birthday'
+      });
+    });
+</script>
+{/block}

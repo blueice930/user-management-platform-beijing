@@ -1,0 +1,106 @@
+{extend name="common/base" /}
+{block name="content"}
+<header class="mui-bar mui-bar-nav">
+	<!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>  -->
+	<a class="topmenu mui-action-menu mui-icon mui-icon-bars mui-pull-right" href="#topPopover"></a>
+	<h1 class="mui-title">包头市中小学生竞赛平台</h1>
+</header>
+<div class="mui-content">
+	<div id="slider" class="mui-slider">
+		<div class="mui-slider-group mui-slider-loop">
+			<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+			<div class="mui-slider-item mui-slider-item-duplicate">
+				<a href="#">
+					<img src="__STATIC__/mobile/img/banner.jpg">
+				</a>
+			</div>
+			<!-- 第一张 -->
+			<div class="mui-slider-item">
+				<a href="#">
+					<img src="__STATIC__/mobile/img/banner.jpg">
+				</a>
+			</div>
+			<!-- 第二张 -->
+			<div class="mui-slider-item">
+				<a href="#">
+					<img src="__STATIC__/mobile/img/banner.jpg">
+				</a>
+			</div>
+			<!-- 第三张 -->
+			<div class="mui-slider-item">
+				<a href="#">
+					<img src="__STATIC__/mobile/img/banner.jpg">
+				</a>
+			</div>
+			<!-- 第四张 -->
+			<div class="mui-slider-item">
+				<a href="#">
+					<img src="__STATIC__/mobile/img/banner.jpg">
+				</a>
+			</div>
+			<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+			<div class="mui-slider-item mui-slider-item-duplicate">
+				<a href="#">
+					<img src="__STATIC__/mobile/img/banner.jpg">
+				</a>
+			</div>
+		</div>
+		<div class="mui-slider-indicator">
+			<div class="mui-indicator mui-active"></div>
+			<div class="mui-indicator"></div>
+			<div class="mui-indicator"></div>
+			<div class="mui-indicator"></div>
+		</div>
+	</div>
+	<div style="padding: 10px 10px;">
+		<div id="segmentedControl" class="mui-segmented-control mui-segmented-control-inverted">
+			{volist name="cats" id="cat" key="k"}
+			<a class="mui-control-item {if condition="$k==1"}mui-active{/if}" href="#item{$cat.id}">{$cat.title}</a>
+			{/volist}
+		</div>
+	</div>
+	<div>
+		{volist name="cats" id="cat" key="k"}
+		<div id="item{$cat.id}" class="mui-control-content {if condition="$k==1"}mui-active{/if}">
+			<ul class="mui-table-view">
+				{volist name="catBooks[$cat['id']]" id="book" key="k"}
+				<li class="mui-table-view-cell bookItem">
+					<a href="{:url('book/bookDetail',['id'=>$book['id']])}">
+						<div class="left imgBox">
+							<img data-lazyload="{$book.img}"/>
+						</div>
+						<div class="left textBox">
+							<p class="title">
+								{$book.title}
+							</p>
+							<p class="desc">
+								{$book.desc_short}
+							</p>
+							<div class="viewNum">
+								<i></i>
+								{$book.view_num}
+							</div>
+							<div class="price">
+								<p>${$book.price}</p>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</a>
+				</li>
+				{/volist}
+			</ul>
+		</div>
+		{/volist}
+	</div>
+</div>
+{/block}
+{block name="script"}
+<script>
+	mui.init();
+	(function($) {
+		$(document).imageLazyload({
+			placeholder: '__STATIC__/mobile/img/book.jpg'
+		});
+	})(mui);
+</script>
+{/block}

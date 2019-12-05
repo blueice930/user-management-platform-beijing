@@ -1,0 +1,15 @@
+.idea
+composer.lock
+*.log
+thinkphp
+.settings
+.project
+.buildpath
+nbproject
+/.idea
+/.vscode
+/vendor
+*.log
+thinkphp
+.env
+.DS_Store

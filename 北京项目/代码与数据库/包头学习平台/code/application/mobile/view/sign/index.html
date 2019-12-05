@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>包头市无线电测向体验活动</title>
+		<link href="__STATIC__/mobile/css/mui.min.css" rel="stylesheet" />
+		<link href="__STATIC__/mobile/css/mui.picker.min.css" rel="stylesheet"/>
+		<style>
+			body,.mui-content{
+				background-color: #fff;
+			}
+			.sign{
+				padding: 10px;
+			}
+			.sign p{
+				color: #000;
+				line-height: 25px;
+				font-size: 17px;
+			}
+			ul,li{
+				list-style: none;
+				padding: 0px;
+			}
+			.left{
+				float: left;
+			}
+			.clear{
+				clear: both;
+			}
+			.mui-input-row.left{
+				clear: none;
+				overflow: auto;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="mui-content sign">
+			<p>
+				无线电测向是一项风靡全球的科技与运动相结合的活动，它可以塑造学生的强健体魄，培养学生运动兴趣，一系列活动已经落地包头，不让你的孩子了解一下嘛！
+			</p>
+			<p>
+				体验活动1.5小时，仅收器材费36元！
+			</p>
+			<p>如有问题请添加下面微信二维码进行咨询:</p>
+			<div style="text-align: center;width:100%;">
+				<img src="__STATIC__/mobile/img/qr3.jpg" style="width:30%;"/>
+			</div>
+			<p style="text-align: center;color: red;">
+				填写以下信息来报名参加吧！
+			</p>
+			<ul>
+				<li>
+					<span>学生姓名：</span>
+					<input type="text" name="name" class="mui-input-clear" style="width:50%;">
+				</li>
+				<li>
+					<span class="left" style="line-height: 35px;">学生性别：</span>
+					<div class="mui-input-row mui-radio mui-left left" style="margin-left: -18px;">
+						<label>男</label>
+						<input name="sex" type="radio" value="男">
+					</div>
+					<div class="mui-input-row mui-radio mui-left left">
+						<label>女</label>
+						<input name="sex" type="radio" value="女">
+					</div>
+					<div class="clear"></div>
+				</li>
+				<li>
+					<span class="left" style="line-height: 35px;">学生生日：</span>
+					<button class="btn mui-btn mui-btn-block left" id="timePicker" style="width: 50%;padding: 5px;margin-left: 5px;">点击选择</button>
+					<div class="clear"></div>
+				</li>
+				<li>
+					<span class="left" style="line-height: 35px;">报名家长：</span>
+					<div class="mui-input-row mui-radio mui-left left" style="margin-left: -18px;">
+						<label>爸爸</label>
+						<input name="parent" type="radio" value="爸爸">
+					</div>
+					<div class="mui-input-row mui-radio mui-left left">
+						<label>妈妈</label>
+						<input name="parent" type="radio" value="妈妈">
+					</div>
+					<div class="mui-input-row mui-radio mui-left left" style="margin-left: 68px;">
+						<label>其他</label>
+						<input name="parent" type="radio" value="其他">
+					</div>
+					<input type="text" name="other_parent" class="mui-input-clear" style="width: 100px;">
+					<div class="clear"></div>
+				</li>
+				<li>
+					<span>参加时间：</span>
+					<div style="margin-left: 68px;margin-top: -28px;">
+						<div class="mui-input-row mui-radio mui-left">
+							<label>12月8日9:00-10:30</label>
+							<input name="join_time" type="radio" value="12月8日9:00-10:30">
+						</div>
+						<div class="mui-input-row mui-radio mui-left">
+							<label>12月8日10:30-12:00</label>
+							<input name="join_time" type="radio" value="12月8日10:30-12:00">
+						</div>
+						<div class="mui-input-row mui-radio mui-left">
+							<label>12月8日14:00-15:30</label>
+							<input name="join_time" type="radio" value="12月8日14:00-15:30">
+						</div>
+						<div class="mui-input-row mui-radio mui-left">
+							<label>12月8日15:30-17:00</label>
+							<input name="join_time" type="radio" value="12月8日15:30-17:00">
+						</div>
+						<div class="mui-input-row mui-radio mui-left">
+							<label>12月9日9:00-10:30</label>
+							<input name="join_time" type="radio" value="12月9日9:00-10:30">
+						</div>
+						<div class="mui-input-row mui-radio mui-left">
+							<label>12月9日10:30-12:00</label>
+							<input name="join_time" type="radio" value="12月9日10:30-12:00">
+						</div>
+						<div class="mui-input-row mui-radio mui-left">
+							<label>12月9日14:00-15:30</label>
+							<input name="join_time" type="radio" value="12月9日14:00-15:30">
+						</div>
+						<div class="mui-input-row mui-radio mui-left">
+							<label>12月9日15:30-17:00</label>
+							<input name="join_time" type="radio" value="12月9日15:30-17:00">
+						</div>
+					</div>
+				</li>
+				<li>
+					<span>家长电话：</span>
+					<input type="text" name="mobile" class="mui-input-clear" style="width: 50%;" placeholder="请输入手机号码">
+				</li>
+				<li>
+					<span>指导老师：</span>
+					<input type="text" name="teacher" class="mui-input-clear" style="width: 50%;" placeholder="如没有可不填">
+				</li>
+				<li>
+					<span>报名学校或机构：</span>
+					<input type="text" name="organ" class="mui-input-clear" style="width: 50%;" placeholder="如没有可不填">
+				</li>
+			</ul>
+			<div style="text-align: center;margin-bottom: 30px;">
+				<button type="button" class="mui-btn mui-btn-danger" id="submitBtn" style="width: 80%;height: 45px;">点击支付</button>
+			</div>
+		</div>
+		<script src="__STATIC__/mobile/js/mui.min.js"></script>
+		<script src="__STATIC__/mobile/js/mui.picker.min.js"></script>
+		<script src="__STATIC__/mobile/js/zepto.min.js"></script>
+		<script src="//res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+		<script>
+			var lock = false;
+			mui.init();
+			var dtPicker = new mui.DtPicker({"type":"date","beginYear":1990,"endYear": 2018});
+			var domTimePicker = document.getElementById("timePicker");
+			domTimePicker.addEventListener('tap', function() {
+				dtPicker.show(function(selectItems) {
+					domTimePicker.innerText = selectItems.y.value+"年"+selectItems.m.value+"月"+selectItems.d.value+"日";
+				});
+			});
+			var submitBtn = document.getElementById("submitBtn");
+			submitBtn.addEventListener('tap', function() {
+				var name = $("input[name=name]").val().replace(/^\s+|\s+$/g,"");
+				var sex = $("input[name=sex]:checked").val();
+				var birthday = $("#timePicker").text();
+				var parent = $("input[name=parent]:checked").val();
+				var other_parent = $("input[name=other_parent]").val().replace(/^\s+|\s+$/g,"");
+				var join_time = $("input[name=join_time]:checked").val();
+				var mobile = $("input[name=mobile]").val().replace(/^\s+|\s+$/g,"");
+				var organ = $("input[name=organ]").val().replace(/^\s+|\s+$/g,"");
+				var teacher = $("input[name=teacher]").val().replace(/^\s+|\s+$/g,"");
+				if(name==""){
+					mui.alert("请填写学生姓名");
+					return false;
+				}
+				if(!sex){
+					mui.alert("请选择学生性别");
+					return false;
+				}
+				if(birthday=="点击选择"){
+					mui.alert("请选择学生生日");
+					return false;
+				}
+				if(!parent){
+					mui.alert("请选择报名家长");
+					return false;
+				}
+				if(other_parent!=""){
+					parent = parent + ":" + other_parent;
+				}
+				if(!join_time){
+					mui.alert("请选择参加时间");
+					return false;
+				}
+				if(mobile==""){
+					mui.alert("请填写家长电话");
+					return false;
+				}
+				if(!/^1\d{10}$/.test(mobile)){
+					mui.alert("家长电话填写不正确(请填写11位长度的手机号码)");
+					return false;
+				}
+				if(lock){
+					return false;
+				}else{
+					lock = true;
+				}
+				setTimeout("lock=false;",5000);
+				$.ajax({
+					type:"GET",
+					url:"{:url('sign/index')}",
+					dataType:"json",
+					data:{name:name,sex:sex,birthday:birthday,parent:parent,join_time:join_time,mobile:mobile,organ:organ,teacher:teacher},
+					error: function(){
+						lock = false;
+						mui.alert("请求失败,请重试");
+					},
+					success:function(result){
+						lock = false;
+						//调起支付
+						WeixinJSBridge.invoke('getBrandWCPayRequest',result.data.jsApiParameters,function(res) {
+					        if (res.err_msg == "get_brand_wcpay_request:ok") {
+					        	//跳转至支付成功页面
+					        	mui.alert("支付成功");
+					        	location.href = "{:url('sign/detail')}?order_code="+result.data.order_code;
+					        }
+					    });
+					}
+				});
+			});
+			
+			//注册微信JS-SDK
+			wx.config({
+			    debug: false,
+			    appId: '{$signPackage.appId}',
+			    timestamp: '{$signPackage.timestamp}',
+			    nonceStr: '{$signPackage.nonceStr}',
+			    signature: '{$signPackage.signature}',
+			    jsApiList: [
+					'checkJsApi',
+					'updateAppMessageShareData',
+					'updateTimelineShareData'
+             	]
+			});
+			
+			//分享信息
+        	var shareData = {
+        		title:"无线电测向体验在线报名",	
+        		desc:"包头市无线电测向体验活动",	
+        		link:"{:request()->url(true)}",
+        		imgUrl:"http://{$Think.server.http_host}__STATIC__/mobile/img/share.jpg"
+        	};
+			
+			wx.ready(function () {  
+				wx.updateAppMessageShareData({ 
+			        title: shareData.title, 
+			        desc: shareData.desc,
+			        link: shareData.link,
+			        imgUrl: shareData.imgUrl,
+			        success: function () {
+			        }
+				});
+				wx.updateTimelineShareData({ 
+			        title: shareData.title, 
+			        link: shareData.link,
+			        imgUrl: shareData.imgUrl,
+			        success: function () {
+			        }
+				});
+			});
+		</script>
+	</body>
+
+</html>

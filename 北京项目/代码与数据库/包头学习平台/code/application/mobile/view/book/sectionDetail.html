@@ -1,0 +1,47 @@
+{extend name="common/base" /}
+{block name="content"}
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">包头市中小学生竞赛平台</h1>
+	</header>
+	<div class="mui-content content sectionDetail">
+		<div class="title">
+			<p>{$detail.title}</p>
+		</div>
+		<div class="play">
+			<!-- <div class="progress">
+				<p class="left hasPalyTime">02:35</p>
+				<p class="mui-progressbar mui-progressbar-in left bar" data-progress="20"><span></span></p>
+				<p class="left allTime">03:49</p>
+				<div class="clear"></div>
+			</div>
+			<div style="text-align: center;" class="btn">
+					<span class="mui-icon mui-icon-loop"></span>
+					<span class="mui-icon mui-icon-arrowleft"></span>
+					<span class="mui-icon mui-icon-videocam"></span>
+					<span class="mui-icon mui-icon-arrowright"></span>
+					<span class="mui-icon mui-icon-mic"></span>
+				</div>
+				<div class="speed">
+					<button type="button" class="mui-btn mui-btn-primary">0.5x</button>
+					<button type="button" class="mui-btn mui-btn-primary">1.0x</button>
+					<button type="button" class="mui-btn mui-btn-primary">2.0x</button>
+				</div>
+			</div> -->
+			<audio controls="controls" style="width:100%;">
+				<source src="{$detail.audio}" type="audio/mpeg">
+				Your browser does not support the audio element.
+			</audio>
+			<div class="article">
+                            <p>
+                                {$detail.content|raw}
+                            </p>
+			</div>
+		</div>
+{/block}
+{block name="script"}
+<script>
+	mui.init();
+	mui(".play .progress").progressbar().setProgress(10);
+</script>
+{/block}

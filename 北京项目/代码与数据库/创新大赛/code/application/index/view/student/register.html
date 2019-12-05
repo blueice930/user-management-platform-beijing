@@ -1,0 +1,107 @@
+{extend name='index@public/main'}
+
+{block name="content"}
+<div class="content" style="background: #0089f4;text-align: center;padding-top: 120px;padding-bottom:100px;color: #fff;">
+        <div class="warp form" style="border-radius: 20px;background: #fff;padding-bottom: 50px;">
+            <p style="color: #0288f4;font-size: 30px;padding-top: 50px;">学生申报方式</p>
+            <form class="layui-form" id="form" action="">
+                <ul>
+                        <li>
+                                姓名 |
+                                <input type="text" name="name" lay-verify="required" placeholder="请输入姓名"/>
+                        </li>
+                        <li>
+                                出生日期 |
+                                <div class="layui-input-inline" style="width: 65%;">
+                                    <input type="text" name="birthday" id="birthday" lay-verify="required|date" autocomplete="off" class="layui-input">
+                                </div>
+                        </li>
+                        <li>
+                                申报代码 |
+                                <input type="text" name="code" lay-verify="required"  placeholder="请输入申报代码"/>
+                        </li>
+                        <li>
+                                联系地址 |
+                                <input type="text" name="address" lay-verify="required"  placeholder="请输入联系地址"/>
+                        </li>
+                        <li>
+                                学校 |
+                                <input type="text" name="school" lay-verify="required" placeholder="请输入学校名称"/>
+                        </li>
+                        <li>
+                                作品名称 |
+                                <input type="text" name="works_title" lay-verify="required"  placeholder="请输入作品名称"/>
+                        </li>
+                        <li>
+                                学段 |
+                                <div class="layui-input-inline" style="width: 65%;">
+                                    <select name="study_level" lay-filter="aihao" lay-verify="required" >
+                                      <option value=""></option>
+                                      <option value="教师">教师</option>
+                                      <option value="高中">高中</option>
+                                      <option value="初中">初中</option>
+                                      <option value="小学">小学</option>
+                                    </select>
+                                </div>
+                        </li>
+                        <li>
+                                类别 |
+                                <div class="layui-input-inline" style="width: 65%;">
+                                    <select name="cat" lay-filter="aihao" lay-verify="required" >
+                                      <option value=""></option>
+                                      <option value="创意类">创意类</option>
+                                      <option value="发明类">发明类</option>
+                                      <option value="探究类">探究类</option>
+                                    </select>
+                                </div>
+                        </li>
+                        <li>
+                                个人或家长联系电话 |
+                                <input type="text" name="mobile" lay-verify="required|phone" placeholder="请输入手机号码"/>
+                        </li>
+                         <li>
+                                指导教师(不一定是联系人) |
+                                <input type="text" name="teacher" lay-verify="required" placeholder="请输入"/>
+                        </li>
+                </ul>  
+                <div style="margin-top: 20px;">
+                        <button id="submitBtn" class="layui-btn" lay-submit>完成申报</button>
+                </div>
+            </form>
+        </div>
+</div>
+<div style="height: 1px;"></div>
+{/block}
+
+{block name="script"}
+<script>
+    $("#form").submit(function(){
+        $.ajax({
+            type : "POST",
+            dataType: "json",
+            url : "",
+            data : $("#form").serializeArray(),
+            success : function(result) {
+                layer.alert('提交成功,等待审核', {icon: 1});
+                $("#form")[0].reset();
+            },
+            error : function(e){
+                layer.alert('提交失败,请刷新页面重试', {icon: 2});
+            }
+        });
+        return false;
+    });
+    
+
+    layui.use(['form', 'layedit', 'laydate'], function(){
+      var form = layui.form
+      ,layer = layui.layer
+      ,layedit = layui.layedit
+      ,laydate = layui.laydate;
+      form.render();
+      laydate.render({
+        elem: '#birthday'
+      });
+    });
+</script>
+{/block}

@@ -1,0 +1,67 @@
+<form autocomplete="off" class="layui-form layui-box modal-form-box" action="{:request()->url()}" data-auto="true" method="post">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input name="name" value='{$vo.name|default=""}' required="required" title="请输入姓名" placeholder="请输入姓名" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-block">
+            <input name="sex" value='{$vo.sex|default=""}' required="required" title="请输入性别" placeholder="请输入性别" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">出生日期</label>
+        <div class="layui-input-block">
+            <input name="birthday" value='{$vo.birthday|default=""}' required="required" title="请输入出生日期" placeholder="请输入出生日期" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">报名家长</label>
+        <div class="layui-input-block">
+            <input name="parent" value='{$vo.parent|default=""}' required="required" title="请输入报名家长" placeholder="请输入报名家长" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">参加时间</label>
+        <div class="layui-input-block">
+            <input name="join_time" value='{$vo.join_time|default=""}' required="required" title="请输入活动时间" placeholder="请输入活动时间" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">家长电话</label>
+        <div class="layui-input-block">
+            <input name="mobile" value='{$vo.mobile|default=""}' required="required" title="请输入家长电话" placeholder="请输入家长电话" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">指导老师</label>
+        <div class="layui-input-block">
+            <input name="teacher" value='{$vo.teacher|default=""}' title="请输入指导老师" placeholder="请输入指导老师" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">报名学校|机构</label>
+        <div class="layui-input-block">
+            <input name="organ" value='{$vo.organ|default=""}' title="请输入报名学校|机构" placeholder="请输入报名学校|机构" class="layui-input">
+        </div>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        {if isset($vo['id'])}<input type='hidden' value='{$vo.id}' name='id'>{/if}
+        <button class="layui-btn" type='submit'>保存数据</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close>取消编辑</button>
+    </div>
+    <script>window.form.render();</script>
+</form>
